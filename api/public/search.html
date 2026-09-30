@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Events | Charity Events</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Events</a>
+        </div>
+    </nav>
+
+    <!-- 搜索页 Banner 背景图 -->
+    <section class="page-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0');">
+        <div class="page-banner-content">
+            <h1>Search Events</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="search-form-card">
+            <form id="search-form">
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="e.g. City Park, Grand Hotel">
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn">Search Events</button>
+                    <button type="button" class="btn btn-danger" id="clear-btn">Clear Filters</button>
+                </div>
+            </form>
+        </div>
+
+        <p id="error-msg" class="error-msg"></p>
+        <div class="event-grid" id="search-results"></div>
+    </div>
+
+    <script src="js/search.js"></script>
+</body>
+</html>

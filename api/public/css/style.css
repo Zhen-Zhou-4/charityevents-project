@@ -1,0 +1,409 @@
+/* =========================================
+   1. 全局变量与重置
+   ========================================= */
+:root {
+    --primary-color: #1e3a8a; /* 深蓝色 */
+    --primary-hover: #1d4ed8;
+    --accent-color: #0d9488; /* 青绿色 */
+    --bg-color: #f3f4f6; /* 浅灰背景 */
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --danger: #ef4444;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 清除 body 默认边距，让全屏背景图完全贴合边缘 */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================
+   2. 导航栏 (Navigation)
+   ========================================= */
+nav {
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 15px 20px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+    border-bottom-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* =========================================
+   3. 主容器与网格 (Container & Grid)
+   ========================================= */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.event-grid {
+    display: grid;
+    /* 自动调整列数，至少 300px 宽，最大 1fr */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* =========================================
+   4. 全屏 Hero 背景 (Homepage & Search)
+   ========================================= */
+/* 全屏 Hero 背景图 */
+.hero {
+    /* 注意：这里去掉了全屏的蓝色渐变遮罩，只保留图片本身！ */
+    background: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0') no-repeat center center;
+    background-size: cover; /* 铺满屏幕 */
+    background-attachment: fixed; /* 滚动视差感 */
+    
+    width: 100%;
+    min-height: 80vh; /* 让背景图占屏幕高度的 80%，显得大气 */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 让文字在背景图正中间 */
+    padding: 40px 20px;
+    margin-bottom: 40px;
+}
+
+/* 玻璃拟态文字框：只挡住图片的一小块，其余部分依然清晰可见 */
+.hero-content {
+    background: rgba(0, 0, 0, 0.4); /* 轻微的暗色背景，提升文字可读性 */
+    backdrop-filter: blur(12px); /* 关键：毛玻璃模糊效果 */
+    -webkit-backdrop-filter: blur(12px);
+    padding: 50px 40px;
+    border-radius: var(--radius);
+    max-width: 800px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 淡淡的白色边框，增加精致感 */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* 柔和阴影 */
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* 文字阴影，让白色文字更锐利 */
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #e2e8f0;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 手机等小屏幕适配 */
+@media (max-width: 768px) {
+    .hero-content { padding: 30px 20px; }
+    .hero-content h1 { font-size: 2rem; }
+}
+
+/* 搜索页的全屏 Banner */
+.search-hero {
+    background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)), 
+                url('https://plus.unsplash.com/premium_photo-1778493606903-4b72f47972aa?q=80&w=1700&auto=format&fit=crop&ixlib=rb-4.1.0');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    width: 100%;
+    padding: 100px 20px;
+    text-align: center;
+    margin: 0 0 40px 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.search-hero h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   5. 活动卡片 (Event Card)
+   ========================================= */
+.event-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    overflow: hidden; /* 防止图片溢出 */
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+
+.event-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.event-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+}
+
+.event-card p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.event-card p strong {
+    color: var(--text-main);
+}
+
+/* =========================================
+   6. 按钮 (Button)
+   ========================================= */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.btn:hover {
+    background: #0f766e;
+    transform: scale(1.02);
+}
+
+.btn-danger {
+    background: var(--danger);
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+/* =========================================
+   7. 搜索表单 (Search Form)
+   ========================================= */
+.search-form-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* =========================================
+   8. 详情页 (Detail Page)
+   ========================================= */
+.detail-container {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.detail-container h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+}
+
+.detail-container img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 25px;
+}
+
+.detail-meta {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.detail-meta p {
+    margin-bottom: 5px;
+}
+
+/* 进度条 */
+.progress-bar {
+    width: 100%;
+    background: #e5e7eb;
+    border-radius: 10px;
+    height: 20px;
+    margin: 10px 0 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+/* =========================================
+   9. 模态框 (Modal)
+   ========================================= */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+}
+
+.modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 辅助类 */
+.error-msg {
+    color: var(--danger);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* =========================================
+   10. 内页顶部 Banner (搜索页和详情页)
+   ========================================= */
+.page-banner {
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+}
+
+.page-banner-content {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 30px 50px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.page-banner h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}

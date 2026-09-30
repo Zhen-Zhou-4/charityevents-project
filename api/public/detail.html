@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details | Charity Events</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Events</a>
+        </div>
+    </nav>
+
+    <!-- 详情页动态 Banner（由 JS 动态替换背景图和标题） -->
+    <section class="page-banner" id="detail-banner">
+        <div class="page-banner-content">
+            <h1 id="detail-banner-title">Event Details</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="detail-container" id="detail-container">
+            <p>Loading event details...</p>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Notice</h3>
+            <p>This feature is currently under construction.</p>
+            <button class="btn" style="margin-top: 20px;" onclick="document.getElementById('register-modal').style.display='none'">Close</button>
+        </div>
+    </div>
+
+    <script src="js/detail.js"></script>
+</body>
+</html>
